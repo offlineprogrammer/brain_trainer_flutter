@@ -13,6 +13,10 @@ class AuthenticationProvider with ChangeNotifier {
 
   Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();
 
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
+
   /// Generates a cryptographically secure random nonce, to be included in a
   /// credential request.
   String generateNonce([int length = 32]) {
@@ -30,7 +34,7 @@ class AuthenticationProvider with ChangeNotifier {
     return digest.toString();
   }
 
-  Future<UserCredential> signInWithApple() async {
+  Future<User> signInWithApple() async {
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
@@ -38,23 +42,41 @@ class AuthenticationProvider with ChangeNotifier {
     final rawNonce = generateNonce();
     final nonce = sha256ofString(rawNonce);
 
-    // Request credential for the currently signed in Apple account.
-    final appleCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      nonce: nonce,
-    );
+    try {
+      // Request credential for the currently signed in Apple account.
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: nonce,
+      );
 
-    // Create an `OAuthCredential` from the credential returned by Apple.
-    final oauthCredential = OAuthProvider("apple.com").credential(
-      idToken: appleCredential.identityToken,
-      rawNonce: rawNonce,
-    );
+      print(appleCredential.authorizationCode);
 
-    // Sign in the user with Firebase. If the nonce we generated earlier does
-    // not match the nonce in `appleCredential.identityToken`, sign in will fail.
-    return await _firebaseAuth.signInWithCredential(oauthCredential);
+      // Create an `OAuthCredential` from the credential returned by Apple.
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
+
+      // Sign in the user with Firebase. If the nonce we generated earlier does
+      // not match the nonce in `appleCredential.identityToken`, sign in will fail.
+      final authResult =
+          await _firebaseAuth.signInWithCredential(oauthCredential);
+
+      final displayName =
+          '${appleCredential.givenName} ${appleCredential.familyName}';
+      final userEmail = '${appleCredential.email}';
+
+      final firebaseUser = authResult.user;
+      print(displayName);
+      await firebaseUser.updateProfile(displayName: displayName);
+      await firebaseUser.updateEmail(userEmail);
+
+      return firebaseUser;
+    } catch (exception) {
+      print(exception);
+    }
   }
 }

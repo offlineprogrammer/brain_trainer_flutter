@@ -2,9 +2,8 @@ import 'package:brain_trainer_app/models/authentication_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-
-class LoginPage extends StatelessWidget {
+class LogoutPage extends StatelessWidget {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,13 +12,14 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SignInWithAppleButton(
-              style: SignInWithAppleButtonStyle.black,
-              iconAlignment: IconAlignment.center,
-              onPressed: () {
-                context.read<AuthenticationProvider>().signInWithApple();
-              },
-            )
+            Center(
+              child: RaisedButton(
+                onPressed: () {
+                  context.read<AuthenticationProvider>().signOut();
+                },
+                child: Text("Sign out"),
+              ),
+            ),
           ],
         ),
       ),
