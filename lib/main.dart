@@ -1,4 +1,5 @@
 import 'package:brain_trainer_app/models/authentication_provider.dart';
+import 'package:brain_trainer_app/screens/game_screen.dart';
 import 'package:brain_trainer_app/screens/login_screen.dart';
 import 'package:brain_trainer_app/screens/logout_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,6 +51,6 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('MyShop'),
         ),
-        body: firebaseUser != null ? LogoutPage() : LoginPage());
+        body: firebaseUser != null ? GameScreen() : LoginPage());
   }
 }
