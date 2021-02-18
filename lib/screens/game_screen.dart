@@ -1,3 +1,4 @@
+import 'package:brain_trainer_app/widgets/answers_grid.dart';
 import 'package:brain_trainer_app/widgets/timer_question_score.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class GameScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TimerQuestionScoreRow(),
+            Expanded(child: AnswersGrid()),
           ],
         ),
       ),

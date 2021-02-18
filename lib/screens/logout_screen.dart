@@ -1,4 +1,4 @@
-import 'package:brain_trainer_app/models/authentication_provider.dart';
+import 'package:brain_trainer_app/providers/authentication_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
