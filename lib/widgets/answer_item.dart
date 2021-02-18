@@ -12,7 +12,24 @@ class AnswerItem extends StatelessWidget {
       child: GridTile(
         child: GestureDetector(
           onTap: () {},
-          child: Text(selectedAnswer.value.toString()),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color.fromRGBO(255, 152, 0, 1),
+              boxShadow: [
+                BoxShadow(color: Colors.white, spreadRadius: 3),
+              ],
+            ),
+            padding: EdgeInsets.all(10),
+            child: Center(
+                child: Text(
+              selectedAnswer.value.toString(),
+              style: TextStyle(
+                  fontSize: 24,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
         ),
       ),
     );

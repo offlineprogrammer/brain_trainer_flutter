@@ -13,6 +13,26 @@ class GameScreen extends StatelessWidget {
           children: [
             TimerQuestionScoreRow(),
             Expanded(child: AnswersGrid()),
+            SizedBox(
+              height: 100,
+              child: Card(
+                margin: EdgeInsets.all(10),
+                elevation: 8,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(color: Colors.white, spreadRadius: 3),
+                    ],
+                  ),
+                  padding: EdgeInsets.all(10),
+                  child: RaisedButton(
+                    onPressed: () {},
+                    child: (Text('Start')),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
