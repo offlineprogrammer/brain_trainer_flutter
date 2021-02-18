@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
     final firebaseUser = context.watch<User>();
     return Scaffold(
         appBar: AppBar(
-          title: Text('MyShop'),
+          title: Text('BrainTrainer'),
         ),
         body: firebaseUser != null ? GameScreen() : LoginPage());
   }
