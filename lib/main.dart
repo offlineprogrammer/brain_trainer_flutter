@@ -1,4 +1,5 @@
-import 'package:brain_trainer_app/providers/answers_provider.dart';
+import 'package:brain_trainer_app/models/game.dart';
+
 import 'package:brain_trainer_app/providers/authentication_provider.dart';
 import 'package:brain_trainer_app/screens/game_screen.dart';
 import 'package:brain_trainer_app/screens/login_screen.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           create: (ctx) => AuthenticationProvider(FirebaseAuth.instance),
         ),
         ChangeNotifierProvider(
-          create: (ctx) => AnswersProvider(),
+          create: (ctx) => Game('+'),
         ),
         StreamProvider(
           create: (BuildContext context) {

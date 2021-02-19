@@ -1,12 +1,13 @@
-import 'package:brain_trainer_app/models/answer.dart';
+import 'package:brain_trainer_app/models/game.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AnswerItem extends StatelessWidget {
+  final Answer answer;
+
+  const AnswerItem({Key key, this.answer}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final selectedAnswer = Provider.of<Answer>(context);
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -23,7 +24,7 @@ class AnswerItem extends StatelessWidget {
             padding: EdgeInsets.all(10),
             child: Center(
                 child: Text(
-              selectedAnswer.value.toString(),
+              answer.value.toString(),
               style: TextStyle(
                   fontSize: 24,
                   fontStyle: FontStyle.italic,
