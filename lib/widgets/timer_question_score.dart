@@ -1,12 +1,20 @@
+import 'package:brain_trainer_app/models/game.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TimerQuestionScoreRow extends StatelessWidget {
+class TimerQuestionScoreRow extends StatefulWidget {
   const TimerQuestionScoreRow({
     Key key,
   }) : super(key: key);
 
   @override
+  _TimerQuestionScoreRowState createState() => _TimerQuestionScoreRowState();
+}
+
+class _TimerQuestionScoreRowState extends State<TimerQuestionScoreRow> {
+  @override
   Widget build(BuildContext context) {
+    final _game = Provider.of<Game>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
@@ -28,11 +36,28 @@ class TimerQuestionScoreRow extends StatelessWidget {
                   ],
                 ),
                 padding: EdgeInsets.all(10),
-                child: Center(
-                    child: Text(
-                  '30s',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                )),
+                /*  child: AnimatedBuilder(
+                  animation: _game,
+                  builder: (BuildContext context, Widget child) {
+                    return Center(
+                        child: Text(
+                      _game.timer,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ));
+                  },
+                ),*/
+
+                child: Consumer<Game>(
+                  builder: (context, game, child) {
+                    return Center(
+                        child: Text(
+                      game.timer,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ));
+                  },
+                ),
               ),
             ),
           ),

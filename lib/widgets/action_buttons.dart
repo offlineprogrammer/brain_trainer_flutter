@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
+import 'package:brain_trainer_app/models/game.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ActionButtons extends StatefulWidget {
   const ActionButtons({
@@ -14,6 +16,7 @@ class ActionButtons extends StatefulWidget {
 class _ActionButtonsState extends State<ActionButtons> {
   var _imageName = 'assets/images/play.png';
   Future<Void> _playTheGame(BuildContext context) async {
+    Provider.of<Game>(context, listen: false).startTimer();
     setState(() {
       _imageName = 'assets/images/playagain.png';
     });
