@@ -20,6 +20,7 @@ class AnswersGrid extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return AnswerItem(
             answer: answers[index],
+            index: index,
           );
         });
   }

@@ -4,8 +4,16 @@ import 'package:provider/provider.dart';
 
 class AnswerItem extends StatelessWidget {
   final Answer answer;
+  final int index;
 
-  const AnswerItem({Key key, this.answer}) : super(key: key);
+  static const _answercolot = [
+    Color.fromRGBO(224, 81, 98, 1),
+    Color.fromRGBO(84, 160, 86, 1),
+    Color.fromRGBO(68, 150, 224, 1),
+    Color.fromRGBO(111, 64, 222, 1),
+  ];
+
+  const AnswerItem({Key key, this.answer, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class AnswerItem extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Color.fromRGBO(255, 152, 0, 1),
+              color: _answercolot[this.index],
               boxShadow: [
                 BoxShadow(color: Colors.white, spreadRadius: 3),
               ],
