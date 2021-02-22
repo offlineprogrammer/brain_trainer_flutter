@@ -52,7 +52,7 @@ class _TimerQuestionScoreRowState extends State<TimerQuestionScoreRow> {
                   builder: (context, game, child) {
                     return Center(
                         child: Text(
-                      game.timer,
+                      '${game.timer}s',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ));

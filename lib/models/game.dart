@@ -33,7 +33,6 @@ class Game with ChangeNotifier {
   }
 
   void startTimer() {
-    print('Star');
     if (_timer != null) {
       _timer.cancel();
       _timer = null;
@@ -41,25 +40,13 @@ class Game with ChangeNotifier {
       Timer.periodic(Duration(seconds: 1), (timer) {
         if (_countdown < 1) {
           timer.cancel();
+          notifyListeners();
         } else {
           _countdown = _countdown - 1;
           notifyListeners();
           print(_countdown);
         }
       });
-
-/*       _timer = new Timer.periodic(
-        const Duration(seconds: 1),
-        (Timer timer) => () {
-          if (_countdown < 1) {
-            timer.cancel();
-          } else {
-            print('Count');
-            _countdown = _countdown - 1;
-          }
-        },
-      ); */
     }
-    notifyListeners();
   }
 }
