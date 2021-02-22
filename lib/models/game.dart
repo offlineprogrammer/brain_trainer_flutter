@@ -15,7 +15,7 @@ class Game with ChangeNotifier {
   int a = 0;
   int b = 0;
   int score;
-  int numberOfQuestions;
+  int _numberOfQuestions;
   bool isActive;
   Timer _timer;
   int _countdown = 30;
@@ -59,8 +59,6 @@ class Game with ChangeNotifier {
           timer.cancel();
           notifyListeners();
         } else {
-          setupGameRound();
-          print(_answers);
           _countdown = _countdown - 1;
           notifyListeners();
           print(_countdown);
@@ -74,6 +72,7 @@ class Game with ChangeNotifier {
       print('Start Timer');
       _countdown = 30;
       _actionButtonImage = 'assets/images/question.png';
+      setupGameRound();
       startTimer();
       isActive = true;
       notifyListeners();
@@ -162,5 +161,25 @@ class Game with ChangeNotifier {
       result = (a / b).round();
     }
     return result;
+  }
+
+  void answerSelected(Answer answer) {
+    if (isActive != null && isActive) {
+      print(answer.value);
+      verifyAnswer(answer);
+      setupGameRound();
+
+      notifyListeners();
+    }
+  }
+
+  void verifyAnswer(Answer answer) {
+    if (answer.value == _answers[_correctAnswerIndex].value) {
+      _actionButtonImage = 'assets/images/correct.png';
+      notifyListeners();
+    } else {
+      _actionButtonImage = 'assets/images/wrong.png';
+      notifyListeners();
+    }
   }
 }

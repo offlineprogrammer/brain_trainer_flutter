@@ -1,5 +1,6 @@
 import 'package:brain_trainer_app/models/game.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AnswerItem extends StatelessWidget {
   final Answer answer;
@@ -8,11 +9,14 @@ class AnswerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _game = Provider.of<Game>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            _game.answerSelected(this.answer);
+          },
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
