@@ -12,8 +12,8 @@ class Answer with ChangeNotifier {
 class Game with ChangeNotifier {
   final String operation;
   int _correctAnswerIndex;
-  int a;
-  int b;
+  int a = 0;
+  int b = 0;
   int score;
   int numberOfQuestions;
   bool isActive;
@@ -39,6 +39,11 @@ class Game with ChangeNotifier {
   String get actionButtonImage {
     print(_actionButtonImage);
     return _actionButtonImage;
+  }
+
+  String get question {
+    print(_actionButtonImage);
+    return '$a $operation $b';
   }
 
   void startTimer() {
