@@ -18,6 +18,7 @@ class Game with ChangeNotifier {
   bool isActive;
   Timer _timer;
   int _countdown = 30;
+  String _actionButtonImage = 'assets/images/play.png';
 
   List<Answer> _answers = [Answer(1), Answer(2), Answer(3), Answer(4)];
 
@@ -32,6 +33,11 @@ class Game with ChangeNotifier {
     return _countdown.toString();
   }
 
+  String get actionButtonImage {
+    print(_actionButtonImage);
+    return _actionButtonImage;
+  }
+
   void startTimer() {
     if (_timer != null) {
       _timer.cancel();
@@ -41,6 +47,7 @@ class Game with ChangeNotifier {
         if (_countdown < 1) {
           print('Timer is done');
           isActive = false;
+          _actionButtonImage = 'assets/images/playagain.png';
           timer.cancel();
           notifyListeners();
         } else {
@@ -56,6 +63,7 @@ class Game with ChangeNotifier {
     if (isActive == null || !isActive) {
       print('Start Timer');
       _countdown = 30;
+      _actionButtonImage = 'assets/images/question.png';
       startTimer();
       isActive = true;
       notifyListeners();

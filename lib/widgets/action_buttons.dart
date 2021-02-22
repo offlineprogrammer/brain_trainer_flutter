@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:brain_trainer_app/models/game.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,21 +12,14 @@ class ActionButtons extends StatefulWidget {
 }
 
 class _ActionButtonsState extends State<ActionButtons> {
-  var _imageName = 'assets/images/play.png';
-  Future<Void> _playTheGame(BuildContext context) async {
-    Provider.of<Game>(context, listen: false).playTheGame();
-    setState(() {
-      _imageName = 'assets/images/playagain.png';
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final _game = Provider.of<Game>(context);
     return SizedBox(
       height: 100,
       child: GestureDetector(
         onTap: () {
-          _playTheGame(context);
+          _game.playTheGame();
         },
         child: Card(
           margin: EdgeInsets.all(10),
@@ -41,9 +32,13 @@ class _ActionButtonsState extends State<ActionButtons> {
               ],
             ),
             padding: EdgeInsets.all(10),
-            child: Image.asset(
-              _imageName,
-              fit: BoxFit.cover,
+            child: Consumer<Game>(
+              builder: (context, game, child) {
+                return Image.asset(
+                  _game.actionButtonImage,
+                  fit: BoxFit.cover,
+                );
+              },
             ),
           ),
         ),
