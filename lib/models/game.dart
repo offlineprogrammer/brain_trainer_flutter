@@ -14,8 +14,8 @@ class Game with ChangeNotifier {
   int _correctAnswerIndex;
   int a = 0;
   int b = 0;
-  int score;
-  int _numberOfQuestions;
+  int _score = 0;
+  int _numberOfQuestions = 0;
   bool isActive;
   Timer _timer;
   int _countdown = 30;
@@ -44,6 +44,10 @@ class Game with ChangeNotifier {
   String get question {
     print(_actionButtonImage);
     return '$a $operation $b';
+  }
+
+  String get score {
+    return '$_score / $_numberOfQuestions';
   }
 
   void startTimer() {
@@ -123,6 +127,7 @@ class Game with ChangeNotifier {
         answers.add(new Answer(wrongAnswer));
       }
     }
+    _numberOfQuestions = _numberOfQuestions + 1;
     _answers = answers;
     notifyListeners();
   }
@@ -176,6 +181,7 @@ class Game with ChangeNotifier {
   void verifyAnswer(Answer answer) {
     if (answer.value == _answers[_correctAnswerIndex].value) {
       _actionButtonImage = 'assets/images/correct.png';
+      _score = _score + 1;
       notifyListeners();
     } else {
       _actionButtonImage = 'assets/images/wrong.png';

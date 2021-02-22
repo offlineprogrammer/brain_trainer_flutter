@@ -107,10 +107,16 @@ class _TimerQuestionScoreRowState extends State<TimerQuestionScoreRow> {
                   ],
                 ),
                 padding: EdgeInsets.all(10),
-                child: Center(
-                    child: Text('10/25',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold))),
+                child: Consumer<Game>(
+                  builder: (context, game, child) {
+                    return Center(
+                        child: Text(
+                      '${game.score}',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ));
+                  },
+                ),
               ),
             ),
           ),
