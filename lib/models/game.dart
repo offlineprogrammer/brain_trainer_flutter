@@ -127,7 +127,7 @@ class Game with ChangeNotifier {
         answers.add(new Answer(wrongAnswer));
       }
     }
-    _numberOfQuestions = _numberOfQuestions + 1;
+
     _answers = answers;
     notifyListeners();
   }
@@ -170,6 +170,7 @@ class Game with ChangeNotifier {
 
   void answerSelected(Answer answer) {
     if (isActive != null && isActive) {
+      _numberOfQuestions = _numberOfQuestions + 1;
       print(answer.value);
       verifyAnswer(answer);
       setupGameRound();
