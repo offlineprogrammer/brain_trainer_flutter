@@ -16,7 +16,7 @@ class ActionButtons extends StatefulWidget {
 class _ActionButtonsState extends State<ActionButtons> {
   var _imageName = 'assets/images/play.png';
   Future<Void> _playTheGame(BuildContext context) async {
-    Provider.of<Game>(context, listen: false).startTimer();
+    Provider.of<Game>(context, listen: false).playTheGame();
     setState(() {
       _imageName = 'assets/images/playagain.png';
     });

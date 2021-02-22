@@ -39,6 +39,8 @@ class Game with ChangeNotifier {
     } else {
       Timer.periodic(Duration(seconds: 1), (timer) {
         if (_countdown < 1) {
+          print('Timer is done');
+          isActive = false;
           timer.cancel();
           notifyListeners();
         } else {
@@ -47,6 +49,16 @@ class Game with ChangeNotifier {
           print(_countdown);
         }
       });
+    }
+  }
+
+  void playTheGame() {
+    if (isActive == null || !isActive) {
+      print('Start Timer');
+      _countdown = 30;
+      startTimer();
+      isActive = true;
+      notifyListeners();
     }
   }
 }
