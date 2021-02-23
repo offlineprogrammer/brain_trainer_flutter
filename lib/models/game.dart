@@ -21,6 +21,7 @@ class Game with ChangeNotifier {
   int _countdown = 30;
   String _actionButtonImage = 'assets/images/play.png';
   String _mathOperation;
+  bool _gameOver = false;
 
   List<Answer> _answers = [Answer(1), Answer(2), Answer(3), Answer(4)];
 
@@ -46,6 +47,10 @@ class Game with ChangeNotifier {
     return '$a $operation $b';
   }
 
+  bool get gameOver {
+    return _gameOver;
+  }
+
   String get score {
     return '$_score / $_numberOfQuestions';
   }
@@ -61,6 +66,7 @@ class Game with ChangeNotifier {
           isActive = false;
           _actionButtonImage = 'assets/images/playagain.png';
           timer.cancel();
+          _gameOver = true;
           notifyListeners();
         } else {
           _countdown = _countdown - 1;
@@ -75,6 +81,7 @@ class Game with ChangeNotifier {
     if (isActive == null || !isActive) {
       print('Start Timer');
       _countdown = 30;
+      _gameOver = false;
       _actionButtonImage = 'assets/images/question.png';
       setupGameRound();
       startTimer();
