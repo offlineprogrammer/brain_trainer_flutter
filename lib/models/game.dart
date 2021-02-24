@@ -82,6 +82,8 @@ class Game with ChangeNotifier {
       print('Start Timer');
       _countdown = 30;
       _gameOver = false;
+      _numberOfQuestions = 0;
+      _score = 0;
       _actionButtonImage = 'assets/images/question.png';
       setupGameRound();
       startTimer();
