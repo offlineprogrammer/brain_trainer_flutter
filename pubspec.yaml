@@ -29,6 +29,7 @@ dependencies:
   crypto: ^2.1.5
   provider: ^4.3.3
   confetti: ^0.5.4+1
+  rflutter_alert: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
