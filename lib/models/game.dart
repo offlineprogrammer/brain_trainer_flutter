@@ -14,9 +14,10 @@ class Game with ChangeNotifier {
   int _correctAnswerIndex;
   int a = 0;
   int b = 0;
-  int _score = 0;
+  int _numberOfCorrectAnswers = 0;
   int _numberOfQuestions = 0;
   bool isActive;
+  int _score = 0;
   Timer _timer;
   int _countdown = 30;
   String _actionButtonImage = 'assets/images/play.png';
@@ -47,12 +48,23 @@ class Game with ChangeNotifier {
     return '$a $operation $b';
   }
 
+  String get completionMsg {
+    var wrongAnswers = _numberOfQuestions == 0
+        ? 0
+        : (_numberOfQuestions - _numberOfCorrectAnswers);
+    var scorePercentage = _numberOfQuestions == 0
+        ? 0
+        : (_score / _numberOfQuestions).toStringAsFixed(2);
+
+    return 'Score $_score \nCorrect Answers : $_numberOfCorrectAnswers \nWrong Answers: $wrongAnswers \nYour accuracy rate is $scorePercentage ';
+  }
+
   bool get gameOver {
     return _gameOver;
   }
 
   String get score {
-    return '$_score / $_numberOfQuestions';
+    return '$_score';
   }
 
   void startTimer() {
@@ -84,6 +96,7 @@ class Game with ChangeNotifier {
       _gameOver = false;
       _numberOfQuestions = 0;
       _score = 0;
+      _numberOfCorrectAnswers = 0;
       _actionButtonImage = 'assets/images/question.png';
       setupGameRound();
       startTimer();
@@ -123,7 +136,7 @@ class Game with ChangeNotifier {
       b = rand.nextInt(21);
     }
     _correctAnswerIndex = rand.nextInt(4);
-    // sumTextView.setText(String.format("%s %s %s", Integer.toString(a), myGame.getOperation() , Integer.toString(b)));
+
     answers.clear();
     for (int i = 0; i < 4; i++) {
       if (i == _correctAnswerIndex) {
@@ -191,7 +204,8 @@ class Game with ChangeNotifier {
   void verifyAnswer(Answer answer) {
     if (answer.value == _answers[_correctAnswerIndex].value) {
       _actionButtonImage = 'assets/images/correct.png';
-      _score = _score + 1;
+      _numberOfCorrectAnswers = _numberOfCorrectAnswers + 1;
+      _score += 100;
       notifyListeners();
     } else {
       _actionButtonImage = 'assets/images/wrong.png';

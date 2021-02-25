@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:brain_trainer_app/models/game.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class GameConfetti extends StatefulWidget {
@@ -28,11 +30,13 @@ class _GameConfettiState extends State<GameConfetti> {
 
   _showAlert(context) {
     Future.delayed(Duration.zero, () async {
+      final String _gameMsg =
+          Provider.of<Game>(context, listen: false).completionMsg;
       var alertStyle = AlertStyle(
         animationType: AnimationType.fromTop,
         isCloseButton: false,
         isOverlayTapDismiss: false,
-        descStyle: TextStyle(fontWeight: FontWeight.bold),
+        descStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         descTextAlign: TextAlign.start,
         animationDuration: Duration(milliseconds: 400),
         overlayColor: Colors.transparent,
@@ -43,7 +47,7 @@ class _GameConfettiState extends State<GameConfetti> {
           ),
         ),
         titleStyle: TextStyle(
-          color: Colors.red,
+          color: Colors.green,
         ),
         alertAlignment: Alignment.center,
       );
@@ -53,12 +57,12 @@ class _GameConfettiState extends State<GameConfetti> {
         context: context,
         type: AlertType.success,
         title: "Well done",
-        desc: "You did it",
+        desc: _gameMsg,
         buttons: [
           DialogButton(
             child: Text(
-              "COOL",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              "Brilliant!!!",
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             onPressed: () => Navigator.pop(context),
             width: 120,
