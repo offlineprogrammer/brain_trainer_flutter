@@ -34,17 +34,17 @@ class Game with ChangeNotifier {
   Game(this.operation);
 
   String get timer {
-    print(_countdown);
+    // print(_countdown);
     return _countdown.toString();
   }
 
   String get actionButtonImage {
-    print(_actionButtonImage);
+    // print(_actionButtonImage);
     return _actionButtonImage;
   }
 
   String get question {
-    print(_actionButtonImage);
+    //print(_actionButtonImage);
     return '$a $operation $b';
   }
 
@@ -56,7 +56,7 @@ class Game with ChangeNotifier {
         ? 0
         : (_score / _numberOfQuestions).toStringAsFixed(2);
 
-    return 'Score $_score \nCorrect Answers : $_numberOfCorrectAnswers \nWrong Answers: $wrongAnswers \nYour accuracy rate is $scorePercentage ';
+    return 'Score $_score \nCorrect Answers : $_numberOfCorrectAnswers \nWrong Answers: $wrongAnswers \nYour accuracy rate is $scorePercentage% ';
   }
 
   bool get gameOver {
@@ -71,32 +71,36 @@ class Game with ChangeNotifier {
     if (_timer != null) {
       _timer.cancel();
       _timer = null;
-    } else {
-      Timer.periodic(Duration(seconds: 1), (timer) {
-        if (_countdown < 1) {
-          print('Timer is done');
-          isActive = false;
-          _actionButtonImage = 'assets/images/playagain.png';
-          timer.cancel();
-          _gameOver = true;
-          notifyListeners();
-        } else {
-          _countdown = _countdown - 1;
-          notifyListeners();
-          print(_countdown);
-        }
-      });
     }
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_countdown < 1) {
+        print('Timer is done');
+        isActive = false;
+        _actionButtonImage = 'assets/images/playagain.png';
+        timer.cancel();
+        _gameOver = true;
+        notifyListeners();
+      } else {
+        _countdown = _countdown - 1;
+        notifyListeners();
+        //  print(_countdown);
+      }
+    });
   }
 
-  void restartTheGame() {
+  void restartTheGame(String operation) {
     isActive = false;
+    _timer?.cancel();
+    if (_timer != null) {
+      _timer.cancel();
+      _timer = null;
+    }
     playTheGame();
   }
 
   void playTheGame() {
     if (isActive == null || !isActive) {
-      print('Start Timer');
+      //  print('Start Timer');
       _countdown = 30;
       _gameOver = false;
       _numberOfQuestions = 0;
@@ -198,7 +202,7 @@ class Game with ChangeNotifier {
   void answerSelected(Answer answer) {
     if (isActive != null && isActive) {
       _numberOfQuestions = _numberOfQuestions + 1;
-      print(answer.value);
+      // print(answer.value);
       verifyAnswer(answer);
       setupGameRound();
 

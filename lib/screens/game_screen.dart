@@ -19,7 +19,11 @@ class GameScreen extends StatelessWidget {
         actions: [
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
-              _game.restartTheGame();
+              if (selectedValue == FilterOptions.Addition) {
+                _game.restartTheGame('+');
+              } else {
+                _game.restartTheGame('random');
+              }
             },
             icon: Icon(Icons.settings_outlined),
             itemBuilder: (BuildContext context) {
