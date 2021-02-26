@@ -18,13 +18,18 @@ class GameScreen extends StatelessWidget {
         title: Text('BrainTrainer'),
         actions: [
           PopupMenuButton(
-            onSelected: (FilterOptions selectedValue) {},
+            onSelected: (FilterOptions selectedValue) {
+              _game.restartTheGame();
+            },
             icon: Icon(Icons.settings_outlined),
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(child: Text('+'), value: FilterOptions.Addition),
                 PopupMenuItem(
-                    child: Text('Random'), value: FilterOptions.Random),
+                    child: Center(child: Text('+')),
+                    value: FilterOptions.Addition),
+                PopupMenuItem(
+                    child: Center(child: Text('Random')),
+                    value: FilterOptions.Random),
               ];
             },
           ),

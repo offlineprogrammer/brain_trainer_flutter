@@ -89,6 +89,11 @@ class Game with ChangeNotifier {
     }
   }
 
+  void restartTheGame() {
+    isActive = false;
+    playTheGame();
+  }
+
   void playTheGame() {
     if (isActive == null || !isActive) {
       print('Start Timer');
