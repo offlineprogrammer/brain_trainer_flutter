@@ -42,7 +42,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: MyHomePage(),
-        routes: {},
+        routes: {
+          GameScreen.routeName: (ctx) => GameScreen(),
+        },
       ),
     );
   }
@@ -56,6 +58,13 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('BrainTrainer'),
         ),
-        body: firebaseUser != null ? GameScreen() : LoginPage());
+        body: firebaseUser != null ? loadGameScreen(context) : LoginPage());
+  }
+
+  Future<Object> loadGameScreen(BuildContext context) {
+    Future.delayed(Duration.zero, () {
+      return Navigator.of(context).pushNamedAndRemoveUntil(
+          GameScreen.routeName, (Route<dynamic> route) => false);
+    });
   }
 }
