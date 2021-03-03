@@ -16,7 +16,12 @@ class GameScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('BrainTrainer'),
+
+        //Icon(Icons.stacked_line_chart_outlined, ),
         actions: [
+          Row(
+            children: [Icon(Icons.grade_outlined), Text(_game.highScore)],
+          ),
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
               if (selectedValue == FilterOptions.Addition) {

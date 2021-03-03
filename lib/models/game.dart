@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:brain_trainer_app/data/data_repository.dart';
+import 'package:brain_trainer_app/models/player.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Answer with ChangeNotifier {
@@ -23,6 +26,8 @@ class Game with ChangeNotifier {
   String _actionButtonImage = 'assets/images/play.png';
   String _mathOperation;
   bool _gameOver = false;
+  Player _gamePlayer;
+  final DataRepository repository = DataRepository();
 
   List<Answer> _answers = [Answer(1), Answer(2), Answer(3), Answer(4)];
 
@@ -31,7 +36,9 @@ class Game with ChangeNotifier {
     return _answers;
   }
 
-  Game(this.operation);
+  Game(this.operation) {
+    setupPlayer();
+  }
 
   String get timer {
     // print(_countdown);
@@ -65,6 +72,10 @@ class Game with ChangeNotifier {
 
   String get score {
     return '$_score';
+  }
+
+  String get highScore {
+    return '500';
   }
 
   void startTimer() {
@@ -219,6 +230,24 @@ class Game with ChangeNotifier {
     } else {
       _actionButtonImage = 'assets/images/wrong.png';
       notifyListeners();
+    }
+  }
+
+  Future<void> setupPlayer() async {
+    _gamePlayer =
+        await repository.getPlayer(FirebaseAuth.instance.currentUser.uid);
+
+    if (_gamePlayer == null) {
+      _gamePlayer = new Player(
+          email: FirebaseAuth.instance.currentUser.email,
+          uid: FirebaseAuth.instance.currentUser.uid,
+          dateCreated: DateTime.now(),
+          gameOperation: '+');
+
+      repository.addPlayer(_gamePlayer);
+    } else {
+      print('Found it');
+      print(_gamePlayer.email);
     }
   }
 }
