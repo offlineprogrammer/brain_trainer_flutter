@@ -242,7 +242,12 @@ class Game with ChangeNotifier {
           email: FirebaseAuth.instance.currentUser.email,
           uid: FirebaseAuth.instance.currentUser.uid,
           dateCreated: DateTime.now(),
-          gameOperation: '+');
+          gameOperation: '+',
+          highScoreGame: new HighScoreGame(
+              datePlayed: DateTime.now(),
+              numberOfWrongAnswers: 0,
+              numberOfCorrectAnswers: 0,
+              score: 0));
 
       repository.addPlayer(_gamePlayer);
     } else {
