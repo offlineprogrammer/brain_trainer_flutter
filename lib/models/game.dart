@@ -13,7 +13,7 @@ class Answer with ChangeNotifier {
 }
 
 class Game with ChangeNotifier {
-  final String operation;
+  String operation;
   int _correctAnswerIndex;
   int a = 0;
   int b = 0;
@@ -25,7 +25,7 @@ class Game with ChangeNotifier {
   Timer _timer;
   int _countdown = 30;
   String _actionButtonImage = 'assets/images/play.png';
-  String _mathOperation;
+  String _mathOperation = '?';
   bool _gameOver = false;
   Player _gamePlayer;
   final DataRepository repository = DataRepository();
@@ -53,7 +53,7 @@ class Game with ChangeNotifier {
 
   String get question {
     //print(_actionButtonImage);
-    return '$a $operation $b';
+    return '$a $_mathOperation $b';
   }
 
   String get completionMsg {
@@ -113,6 +113,7 @@ class Game with ChangeNotifier {
 
   void restartTheGame(String operation) {
     isActive = false;
+    this.operation = operation;
     _timer?.cancel();
     if (_timer != null) {
       _timer.cancel();

@@ -27,7 +27,7 @@ class GameScreen extends StatelessWidget {
               if (selectedValue == FilterOptions.Addition) {
                 _game.restartTheGame('+');
               } else {
-                _game.restartTheGame('random');
+                _game.restartTheGame('Random');
               }
             },
             icon: Icon(Icons.settings_outlined),
