@@ -21,6 +21,7 @@ class Game with ChangeNotifier {
   int _numberOfQuestions = 0;
   bool isActive;
   int _score = 0;
+  int _highScore = 0;
   Timer _timer;
   int _countdown = 30;
   String _actionButtonImage = 'assets/images/play.png';
@@ -75,7 +76,7 @@ class Game with ChangeNotifier {
   }
 
   String get highScore {
-    return '500';
+    return '$_highScore';
   }
 
   void startTimer() {
@@ -90,6 +91,17 @@ class Game with ChangeNotifier {
         _actionButtonImage = 'assets/images/playagain.png';
         timer.cancel();
         _gameOver = true;
+        if (_score > _highScore) {
+          _highScore = _score;
+          _gamePlayer.highScoreGame = new HighScoreGame(
+              datePlayed: DateTime.now(),
+              numberOfWrongAnswers:
+                  (_numberOfQuestions - _numberOfCorrectAnswers),
+              numberOfCorrectAnswers: _numberOfCorrectAnswers,
+              score: _highScore);
+
+          repository.updatePlayer(_gamePlayer);
+        }
         notifyListeners();
       } else {
         _countdown = _countdown - 1;
@@ -253,6 +265,7 @@ class Game with ChangeNotifier {
     } else {
       print('Found it');
       print(_gamePlayer.email);
+      _highScore = _gamePlayer.highScoreGame.score;
     }
   }
 }

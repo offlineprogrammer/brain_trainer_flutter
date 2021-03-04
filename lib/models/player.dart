@@ -61,7 +61,7 @@ class Player with ChangeNotifier {
   final String uid;
   final DateTime dateCreated;
   final String gameOperation;
-  final HighScoreGame highScoreGame;
+  HighScoreGame highScoreGame;
 
   Player(
       {this.email,
