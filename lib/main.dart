@@ -34,13 +34,14 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'BrainTrainer',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          fontFamily: 'Lato',
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+            primarySwatch: colorCustom,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            primaryTextTheme:
+                TextTheme(headline6: TextStyle(color: Colors.white))),
         home: MyHomePage(),
         routes: {
           GameScreen.routeName: (ctx) => GameScreen(),
@@ -49,6 +50,20 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+Map<int, Color> color = {
+  50: Color.fromRGBO(43, 125, 20, .1),
+  100: Color.fromRGBO(43, 125, 20, .2),
+  200: Color.fromRGBO(43, 125, 20, .3),
+  300: Color.fromRGBO(43, 125, 20, .4),
+  400: Color.fromRGBO(43, 125, 20, .5),
+  500: Color.fromRGBO(43, 125, 20, .6),
+  600: Color.fromRGBO(43, 125, 20, .7),
+  700: Color.fromRGBO(43, 125, 20, .8),
+  800: Color.fromRGBO(43, 125, 20, .9),
+  900: Color.fromRGBO(43, 125, 20, 1),
+};
+MaterialColor colorCustom = MaterialColor(0xFFF37D14, color);
 
 class MyHomePage extends StatelessWidget {
   @override

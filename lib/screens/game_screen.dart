@@ -20,7 +20,16 @@ class GameScreen extends StatelessWidget {
         //Icon(Icons.stacked_line_chart_outlined, ),
         actions: [
           Row(
-            children: [Icon(Icons.grade_outlined), Text(_game.highScore)],
+            children: [
+              Icon(
+                Icons.grade_outlined,
+                color: Colors.white,
+              ),
+              Text(
+                _game.highScore,
+                style: TextStyle(color: Colors.white),
+              )
+            ],
           ),
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
@@ -30,7 +39,10 @@ class GameScreen extends StatelessWidget {
                 _game.restartTheGame('Random');
               }
             },
-            icon: Icon(Icons.settings_outlined),
+            icon: Icon(
+              Icons.settings_outlined,
+              color: Colors.white,
+            ),
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
