@@ -1,6 +1,7 @@
 import 'package:brain_trainer_app/models/game.dart';
 import 'package:brain_trainer_app/widgets/action_buttons.dart';
 import 'package:brain_trainer_app/widgets/answers_grid.dart';
+import 'package:brain_trainer_app/widgets/game_ads.dart';
 import 'package:brain_trainer_app/widgets/game_confetti.dart';
 import 'package:brain_trainer_app/widgets/timer_question_score.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,7 @@ class GameScreen extends StatelessWidget {
               TimerQuestionScoreRow(),
               Expanded(child: AnswersGrid()),
               ActionButtons(),
+              GameAds()
             ],
           ),
           (_game.gameOver != null && _game.gameOver)

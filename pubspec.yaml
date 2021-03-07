@@ -35,6 +35,7 @@ dependencies:
   intl: ^0.16.1
   flutter_native_splash: ^1.0.2
   flutter_launcher_icons: ^0.9.0
+  google_mobile_ads: ^0.11.0+2
 
 flutter_icons:
   android: "launcher_icon"
