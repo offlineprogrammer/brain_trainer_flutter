@@ -115,7 +115,7 @@ flutter_native_splash:
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a 
   # png file.  
-  #image: assets/splash.png
+  image: assets/images/mathsplash.png
 
   # The color_dark and image_dark are parameters that set the color and image when the device is 
   # in dark mode.  If they are not specified, the app will use the color and image above.
@@ -142,7 +142,7 @@ flutter_native_splash:
   # https://developer.apple.com/documentation/uikit/uiview/contentmode): scaleToFill, 
   # scaleAspectFit, scaleAspectFill, center, top, bottom, left, right, topLeft, topRight, 
   # bottomLeft, or bottomRight.
-  #ios_content_mode: center
+  ios_content_mode: center
   #
   # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
   #web_image_mode: center
@@ -153,7 +153,7 @@ flutter_native_splash:
   #       To show the notification bar, add the following code to your Flutter app:
   #       WidgetsFlutterBinding.ensureInitialized();
   #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
-  #fullscreen: true
+  fullscreen: true
   
   # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s) 
   # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
