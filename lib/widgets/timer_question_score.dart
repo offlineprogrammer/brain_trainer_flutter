@@ -17,8 +17,6 @@ class _TimerQuestionScoreRowState extends State<TimerQuestionScoreRow> {
     final _game = Provider.of<Game>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-      //crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
           flex: 3,
@@ -36,18 +34,6 @@ class _TimerQuestionScoreRowState extends State<TimerQuestionScoreRow> {
                   ],
                 ),
                 padding: EdgeInsets.all(10),
-                /*  child: AnimatedBuilder(
-                  animation: _game,
-                  builder: (BuildContext context, Widget child) {
-                    return Center(
-                        child: Text(
-                      _game.timer,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ));
-                  },
-                ),*/
-
                 child: Consumer<Game>(
                   builder: (context, game, child) {
                     return Center(

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:brain_trainer_app/models/game.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
@@ -92,21 +90,7 @@ class _GameConfettiState extends State<GameConfetti> {
             Colors.orange,
             Colors.purple
           ], // manually specify the colors to be used
-          child: _showAlert(context)
-
-          /*         AlertDialog(
-          title: Text('Well Done'),
-          content: Text('Great'),
-          actions: [
-            FlatButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        ), */
-          ),
+          child: _showAlert(context)),
     );
   }
 }
