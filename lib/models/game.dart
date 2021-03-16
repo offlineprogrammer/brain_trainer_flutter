@@ -143,7 +143,7 @@ class Game with ChangeNotifier {
     int i12;
     _mathOperation = operation;
     if (operation?.toLowerCase() == "Random"?.toLowerCase()) {
-      var list = ["+", "-", "*", "/"];
+      var list = ["+", "-", "x", "÷"];
       Random r = new Random();
       _mathOperation = list[r.nextInt(list.length)];
     }
@@ -195,7 +195,7 @@ class Game with ChangeNotifier {
       result = rand.nextInt(41);
     } else if (sOperation?.toLowerCase() == ("-")?.toLowerCase()) {
       result = rand.nextInt(41 + 20) - 20;
-    } else if (sOperation?.toLowerCase() == ("*")?.toLowerCase()) {
+    } else if (sOperation?.toLowerCase() == ("x")?.toLowerCase()) {
       if (a == 0) {
         a = 1;
       }
@@ -203,7 +203,7 @@ class Game with ChangeNotifier {
         b = 1;
       }
       result = rand.nextInt(2 * a * b);
-    } else if (sOperation?.toLowerCase() == ("/")?.toLowerCase()) {
+    } else if (sOperation?.toLowerCase() == ("÷")?.toLowerCase()) {
       result = rand.nextInt(41);
     }
     return result;
@@ -215,9 +215,9 @@ class Game with ChangeNotifier {
       result = a + b;
     } else if (sOperation?.toLowerCase() == ("-")?.toLowerCase()) {
       result = a - b;
-    } else if (sOperation?.toLowerCase() == ("*")?.toLowerCase()) {
+    } else if (sOperation?.toLowerCase() == ("x")?.toLowerCase()) {
       result = a * b;
-    } else if (sOperation?.toLowerCase() == ("/")?.toLowerCase()) {
+    } else if (sOperation?.toLowerCase() == ("÷")?.toLowerCase()) {
       result = (a / b).round();
     }
     return result;
