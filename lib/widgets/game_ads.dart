@@ -15,7 +15,8 @@ class _GameAdsState extends State<GameAds> {
     MobileAds.instance.initialize();
     _bannerAd = BannerAd(
       size: AdSize.banner,
-      //adUnitId:          'ca-app-pub-7065714443867225/6797140156', // BannerAd.testAdUnitId,
+      //adUnitId:
+      //    'ca-app-pub-7065714443867225/6797140156', // BannerAd.testAdUnitId,
       adUnitId: BannerAd.testAdUnitId,
       listener: AdListener(),
       request: AdRequest(),
