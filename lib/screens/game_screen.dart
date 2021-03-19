@@ -38,20 +38,9 @@ _showAlert(context) {
     Alert(
       style: alertStyle,
       context: context,
-      type: AlertType.success,
-      title: "Well done",
+      type: AlertType.warning,
+      title: "Choose the math",
       content: AppBarItems(),
-      desc: _gameMsg,
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Brilliant!!!",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
     ).show();
   });
 }
@@ -84,29 +73,6 @@ class GameScreen extends StatelessWidget {
             ),
             onPressed: () {
               _showAlert(context);
-            },
-          ),
-          PopupMenuButton(
-            onSelected: (FilterOptions selectedValue) {
-              if (selectedValue == FilterOptions.Addition) {
-                //_game.restartTheGame('+');
-              } else {
-                _game.restartTheGame('Random');
-              }
-            },
-            icon: Icon(
-              Icons.settings_outlined,
-              color: Colors.white,
-            ),
-            itemBuilder: (BuildContext context) {
-              return [
-                PopupMenuItem(
-                    child: Center(child: Text('+')),
-                    value: FilterOptions.Addition),
-                PopupMenuItem(
-                    child: Center(child: Text('Random')),
-                    value: FilterOptions.Random),
-              ];
             },
           ),
         ],

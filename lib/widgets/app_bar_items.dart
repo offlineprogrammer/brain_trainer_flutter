@@ -33,6 +33,7 @@ class _AppBarItemsState extends State<AppBarItems> {
                 print(value);
                 Provider.of<Game>(context, listen: false).restartTheGame('+');
                 _character = value;
+                Navigator.pop(context);
               });
             },
           ),
@@ -48,6 +49,7 @@ class _AppBarItemsState extends State<AppBarItems> {
                 Provider.of<Game>(context, listen: false)
                     .restartTheGame('Random');
                 _character = value;
+                Navigator.pop(context);
               });
             },
           ),
