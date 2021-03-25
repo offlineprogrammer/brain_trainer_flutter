@@ -7,7 +7,6 @@ import 'package:brain_trainer_app/widgets/game_confetti.dart';
 import 'package:brain_trainer_app/widgets/timer_question_score.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class GameScreen extends StatelessWidget {
   static const routeName = '/play-game';

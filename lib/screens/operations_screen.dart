@@ -18,7 +18,20 @@ class OperationsScreen extends StatelessWidget {
         child: Stack(children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [Expanded(child: ConfigGrid()), GameAds()],
+            children: [
+              ListTile(
+                //leading: Icon(Icons.games_rounded),
+                title: Text('Select a math operation',
+                    textAlign: TextAlign.center),
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(OperationsScreen.routeName);
+                },
+              ), //Cen
+              Divider(),
+              Expanded(child: ConfigGrid()),
+              GameAds(),
+            ],
           ),
         ]),
       ),
