@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 class AnswersGrid extends StatelessWidget {
   @override
-  @override
   Widget build(BuildContext context) {
     final gameData = Provider.of<Game>(context);
     final answers = gameData.answers;
