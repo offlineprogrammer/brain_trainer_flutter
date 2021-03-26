@@ -21,8 +21,14 @@ class OperationsScreen extends StatelessWidget {
             children: [
               ListTile(
                 //leading: Icon(Icons.games_rounded),
-                title: Text('Select a math operation',
-                    textAlign: TextAlign.center),
+                title: Text(
+                  'Select a math operation',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+
                 onTap: () {
                   Navigator.of(context)
                       .pushReplacementNamed(OperationsScreen.routeName);
