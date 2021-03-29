@@ -41,6 +41,10 @@ class Game with ChangeNotifier {
     setupPlayer();
   }
 
+  Player get player {
+    return _gamePlayer;
+  }
+
   String get timer {
     // print(_countdown);
     return _countdown.toString();

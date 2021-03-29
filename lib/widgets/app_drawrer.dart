@@ -1,3 +1,4 @@
+import 'package:brain_trainer_app/screens/highscore_screen.dart';
 import 'package:brain_trainer_app/screens/operations_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,8 @@ class _AppDrawerState extends State<AppDrawer> {
             leading: Icon(Icons.bar_chart_outlined),
             title: Text('My High Score'),
             onTap: () {
-              //Navigator.of(context).pushReplacementNamed(UserProductsScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(HighScoreScreen.routeName);
             },
           ),
         ],

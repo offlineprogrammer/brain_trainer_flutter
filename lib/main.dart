@@ -1,9 +1,10 @@
 import 'package:brain_trainer_app/models/game.dart';
+import 'package:brain_trainer_app/models/player.dart';
 
 import 'package:brain_trainer_app/providers/authentication_provider.dart';
 import 'package:brain_trainer_app/screens/game_screen.dart';
+import 'package:brain_trainer_app/screens/highscore_screen.dart';
 import 'package:brain_trainer_app/screens/login_screen.dart';
-import 'package:brain_trainer_app/screens/logout_screen.dart';
 import 'package:brain_trainer_app/screens/operations_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Game('+'),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => Player(),
+        ),
         StreamProvider(
           create: (BuildContext context) {
             return context.read<AuthenticationProvider>().authStateChanges;
@@ -50,6 +54,7 @@ class MyApp extends StatelessWidget {
         routes: {
           GameScreen.routeName: (ctx) => GameScreen(),
           OperationsScreen.routeName: (ctx) => OperationsScreen(),
+          HighScoreScreen.routeName: (ctx) => HighScoreScreen(),
         },
       ),
     );

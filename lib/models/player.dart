@@ -18,6 +18,10 @@ class HighScoreGame {
       _HighScoreGameFromJson(json);
 
   Map<String, dynamic> toJson() => _HighScoreGameToJson(this);
+
+  int get highScore {
+    return this.score;
+  }
 }
 
 HighScoreGame _HighScoreGameFromJson(Map<dynamic, dynamic> json) {
@@ -76,4 +80,8 @@ class Player with ChangeNotifier {
   Map<String, dynamic> toJson() => _PlayerToJson(this);
   @override
   String toString() => "Player<$email>";
+
+  HighScoreGame get player_highScoreGame {
+    return this.highScoreGame;
+  }
 }
