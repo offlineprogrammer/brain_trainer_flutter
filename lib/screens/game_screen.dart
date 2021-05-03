@@ -22,7 +22,7 @@ class GameScreen extends StatelessWidget {
             child: Row(
               children: [
                 Icon(
-                  Icons.grade_outlined,
+                  Icons.emoji_events_outlined,
                   color: Colors.white,
                 ),
                 Text(
