@@ -11,15 +11,20 @@ class HighScoreScreen extends StatelessWidget {
 
   Widget _highScoreItem(
       Text itemTitle, IconData leadinngIcon, Color itemColor) {
-    return ListTile(
-      tileColor: itemColor,
-      contentPadding: EdgeInsets.all(20.0),
-      leading: Icon(
-        leadinngIcon,
-        size: 35,
-        color: Colors.white,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Card(
+        child: ListTile(
+          tileColor: itemColor,
+          contentPadding: EdgeInsets.all(20.0),
+          leading: Icon(
+            leadinngIcon,
+            size: 35,
+            color: Colors.white,
+          ),
+          title: itemTitle,
+        ),
       ),
-      title: itemTitle,
     );
   }
 
@@ -59,61 +64,41 @@ class HighScoreScreen extends StatelessWidget {
               SizedBox(
                 height: 32.0,
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Card(
-                  child: _highScoreItem(
-                    Text(
-                      'On ' +
-                          DateFormat('dd/MM/yyyy')
-                              .format(_playerhighScoreGame.datePlayed),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icons.calendar_today_rounded,
-                    Color.fromRGBO(224, 81, 98, 1),
-                  ),
+              _highScoreItem(
+                Text(
+                  'On ' +
+                      DateFormat('dd/MM/yyyy')
+                          .format(_playerhighScoreGame.datePlayed),
+                  style: TextStyle(color: Colors.white),
                 ),
+                Icons.calendar_today_rounded,
+                Color.fromRGBO(224, 81, 98, 1),
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Card(
-                  child: _highScoreItem(
-                    Text(
-                      _playerhighScoreGame.numberOfCorrectAnswers.toString() +
-                          ' correct answers',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icons.check_circle_outline,
-                    Color.fromRGBO(84, 160, 86, 1),
-                  ),
+              _highScoreItem(
+                Text(
+                  _playerhighScoreGame.numberOfCorrectAnswers.toString() +
+                      ' correct answers',
+                  style: TextStyle(color: Colors.white),
                 ),
+                Icons.check_circle_outline,
+                Color.fromRGBO(84, 160, 86, 1),
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Card(
-                  child: _highScoreItem(
-                    Text(
-                      _playerhighScoreGame.numberOfWrongAnswers.toString() +
-                          ' wrong answers',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icons.cancel_outlined,
-                    Color.fromRGBO(68, 150, 224, 1),
-                  ),
+              _highScoreItem(
+                Text(
+                  _playerhighScoreGame.numberOfWrongAnswers.toString() +
+                      ' wrong answers',
+                  style: TextStyle(color: Colors.white),
                 ),
+                Icons.cancel_outlined,
+                Color.fromRGBO(68, 150, 224, 1),
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Card(
-                  child: _highScoreItem(
-                    Text(
-                      'score of ' + _playerhighScoreGame.score.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icons.emoji_events_outlined,
-                    Color.fromRGBO(111, 64, 222, 1),
-                  ),
+              _highScoreItem(
+                Text(
+                  'score of ' + _playerhighScoreGame.score.toString(),
+                  style: TextStyle(color: Colors.white),
                 ),
+                Icons.emoji_events_outlined,
+                Color.fromRGBO(111, 64, 222, 1),
               ),
             ],
           ),
